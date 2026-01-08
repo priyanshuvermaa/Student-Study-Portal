@@ -1,0 +1,786 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subject Search</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.left-text {
+    margin: 20px;
+    background-color: #ffffff; /* Add background color to the left section */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.subject-container {
+    margin-bottom: 20px;
+    background-color: #ffffff; /* Add background color to each subject container */
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.subject-name {
+    color: #007bff;
+    cursor: pointer;
+    margin: 0;
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.subject-content {
+    display: none;
+    padding: 20px;
+}
+
+.list-group {
+    padding-left: 20px;
+}
+
+.list-group-item {
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+}
+
+.subject-thumbnail {
+    width: 100%;
+    height: auto;
+    border-radius: 8px 8px 0 0;
+    object-fit: cover;
+}
+
+.subject-thumbnail img {
+    width: 100%;
+    height: 100%;
+}
+
+.subject-content ul {
+    margin: 0;
+    padding: 0;
+}
+
+.subject-content li {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+.subject-thumbnail {
+    position: relative;
+    width: 100%;
+    max-width: 1500px; /* Set maximum width for the image */
+    height: 150px;
+    border-radius: 8px 8px 0 0;
+    object-fit: cover;
+    margin-bottom: 20px;
+    text-align: center; /* Center align the text */
+}
+
+.subject-thumbnail .thumbnail-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; /* Text color */
+    font-size: 50px; /* Adjust font size as needed */
+    font-weight: bold; /* Adjust font weight as needed */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional text shadow */
+}
+
+
+@media (max-width: 768px) {
+    .subject-thumbnail {
+        height: 100px; /* Adjust height for smaller screens */
+    }
+    .subject-thumbnail .thumbnail-text {
+        font-size: 30px; /* Adjust font size for smaller screens */
+    }
+}
+
+/* Media queries for even smaller screens (e.g., smartphones in portrait mode) */
+@media (max-width: 480px) {
+    .subject-thumbnail .thumbnail-text {
+        font-size: 20px; /* Further adjust font size for very small screens */
+    }
+}
+
+</style>
+
+<div class="left-text">
+    <!-- <img class="subject-thumbnail" src="page-header.jpg" alt="Notes of Engineering Subject">
+    <br> -->
+
+    <div class="subject-thumbnail">
+        <img src="{% static 'images/page-header.jpg' %}"  alt="Engineering Subject Notes">
+        <div class="thumbnail-text">Engineering Subject Notes</div>
+    </div>
+    <input type="text" id="searchInput" placeholder="Search for a subject...">
+
+    <div class="subject-container">
+        <h4 class="subject-name">Mathematics-1</h4>
+        <div class="subject-content">
+            <ul class="list-group" style="list-style-type: disc;">
+                <li class="list-group-item">UNIT-1</li>
+                <a href="https://drive.google.com/file/d/1Brz-g22cvOnfi0ddlLsPeR-tBPFgNiz1/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">UNIT-2</li>
+                <a href="https://drive.google.com/file/d/1Of9BVbaZ8qrm1CeBvIOYo6KaYIju_TJ2/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">UNIT-3</li>
+                <a href="https://drive.google.com/file/d/19romeqbKuSvs1Bh_C9KPqnmHOEUFmiV3/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">UNIT-4</li>
+                <a href="https://drive.google.com/file/d/1dgpy_4BhevO9puHn-P8NwRnGXsxFpjSa/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">UNIT-5</li>
+                <a href="https://drive.google.com/file/d/1J57K0-2q43QtzrODVX3InohOgMk_v7Rw/view?usp=sharing"> <button>Download</button></a>
+                <br>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="subject-container">
+        <h4 class="subject-name">Mathematics-2</h4>
+        <div class="subject-content">
+          <ul class="list-group" style="list-style-type: disc;">
+            <li class="list-group-item">UNIT-1</li>
+            <a href="https://drive.google.com/file/d/1BL79aoKlzrhXaQF6cx0F--rPY1Q3dYmU/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-2</li>
+            <a href="https://drive.google.com/file/d/19jvCYCiFfoJeUQyOjWeCQzciPM6NZo3w/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-3</li>
+            <a href="https://drive.google.com/file/d/1XR8516qBdgFA7l6tTAr5z5NsZ6T-nOen/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-4</li>
+            <a href="https://drive.google.com/file/d/17OtpjLrlM_y6N6cJubMPpXj-vdfdqRmS/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-5</li>
+            <a href="https://drive.google.com/file/d/1rCLn15H0CzfDgj-h2C9cqwAMKcnJ1_rZ/view?usp=sharing"> <button>Download</button></a>
+            <br>
+        </ul>
+        </div>
+    </div>
+    
+    <div class="subject-container">
+        <h4 class="subject-name">Applied Physics</h4>
+        <div class="subject-content">
+          <ul class="list-group" style="list-style-type: disc;">
+            <li class="list-group-item">UNIT-1</li>
+            <a href="https://drive.google.com/file/d/1O8EkfnS5hN9_YYuRJuwOktVInH8X8rNS/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-2</li>
+            <a href="https://drive.google.com/file/d/18KoRliVCdGjPAPfcdFp83nmC38qQZFhl/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-3</li>
+            <a href="https://drive.google.com/file/d/13qXQK3Oq11OQWFZNUj2xdqIz2vIJD4JT/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-4</li>
+            <a href="https://drive.google.com/file/d/1JJAg78U5VP54OlThDWof-V3fUTR-gnop/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-5</li>
+            <a href="https://drive.google.com/file/d/16YACBF4FC2-eLbB6AedSsARDKV57VFL_/view?usp=sharing"> <button>Download</button></a>
+            <br>
+        </ul>
+        </div>
+    </div>
+
+    <div class="subject-container">
+        <h4 class="subject-name">Computer Science and Organisation(CSO)</h4>
+        <div class="subject-content">
+          <ul class="list-group" style="list-style-type: disc;">
+            <li class="list-group-item">UNIT-1</li>
+            <a href="https://drive.google.com/file/d/179Rc9pKYtCZm8tBRApg1HeM70urNwVbs/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-2</li>
+            <a href="https://drive.google.com/file/d/10XP6ALD_qIn47dnR6hBY3JJbtB6fWR_E/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-3</li>
+            <a href="https://drive.google.com/file/d/1Zg1VyuAbqoVipxOG_t9quo8kQdL4kOiR/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-4</li>
+            <a href="https://drive.google.com/file/d/1Zg1VyuAbqoVipxOG_t9quo8kQdL4kOiR/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-5</li>
+            <a href="https://drive.google.com/file/d/1FBjoCKHPRjbAF95SaB1418OR1hzZX-wS/view?usp=sharing"> <button>Download</button></a>
+            <br>
+        </ul>
+        </div>
+    </div>
+
+    <div class="subject-container">
+        <h4 class="subject-name">Digital Logic and Circuit Design(DLCD)</h4>
+        <div class="subject-content">
+          <ul class="list-group" style="list-style-type: disc;">
+            <li class="list-group-item">UNIT-1</li>
+            <a href="https://drive.google.com/file/d/1rdtTAt4jeSynhoKVYDcC8QUy4mw7OFWt/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-2</li>
+            <a href="https://drive.google.com/file/d/1kuttwiUnx9so53oQJlwhklOO5Uh8U24F/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-3</li>
+            <a href="https://drive.google.com/file/d/1vXxbiYsSzHzKJUjJqoUH9Ar_1lzSHtlw/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-4</li>
+            <a href="https://drive.google.com/file/d/1hkyNud6Vg7JPOHWxfScnEww8Fci_TTaE/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-5</li>
+            <a href="https://drive.google.com/file/d/1_WIXcVUE8s6AA8xODXenTZ3aqcCmKUl_/view?usp=sharing"> <button>Download</button></a>
+            <br>
+        </ul>
+        </div>
+    </div>
+
+    <div class="subject-container">
+        <h4 class="subject-name">Discreate Structure</h4>
+        <div class="subject-content">
+          <ul class="list-group" style="list-style-type: disc;">
+            <li class="list-group-item">UNIT-1</li>
+            <a href="https://drive.google.com/file/d/1c3iAXwFFFohOw0zzPMmFoAXKUgYn7SvS/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-2</li>
+            <a href="https://drive.google.com/file/d/1sKL2rs1hdu9vUF3JonWmfSzWCEJDJVsS/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-3</li>
+            <a href="https://drive.google.com/file/d/1la1nyuaKvKPQODXtadUYZ2CRcXJSbCpI/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-4</li>
+            <a href="https://drive.google.com/file/d/1p7fx_CA160moexZvnv0Lff_ySlcVHTTP/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-5</li>
+            <a href="https://drive.google.com/file/d/1YfIc-fqbaDJlXwHdo2ueNPC5ufPczPay/view?usp=sharing"> <button>Download</button></a>
+            <br>
+        </ul>
+        </div>
+    </div>
+
+    <div class="subject-container">
+        <h4 class="subject-name">Communication Skills</h4>
+        <div class="subject-content">
+          <ul class="list-group" style="list-style-type: disc;">
+            <li class="list-group-item">UNIT-1</li>
+            <a href="https://drive.google.com/file/d/1tVZoIaK2P5jHAdHrzk1azyl6qtM-ETS3/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-2</li>
+            <a href="https://drive.google.com/file/d/16poUDqP-MDNOcsWb1Nh8e5_888CWgda9/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-3</li>
+            <a href="https://drive.google.com/file/d/1e-_ZMk5Dm2D6-u5Dcnuo40a7CDSygiv7/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-4</li>
+            <a href="https://drive.google.com/file/d/1AIDESklexrN-zyEnGI0e5rSnrOxH7fLI/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-5</li>
+            <a href="https://drive.google.com/file/d/1zS2UiWrEUG726W2_hjGKaqlM5KbfyKxX/view?usp=sharing"> <button>Download</button></a>
+            <br>
+        </ul>
+        </div>
+    </div>
+
+    <div class="subject-container">
+        <h4 class="subject-name">Object Oriented Programing(OOP)</h4>
+        <div class="subject-content">
+          <ul class="list-group" style="list-style-type: disc;">
+            <li class="list-group-item">UNIT-1</li>
+            <a href="https://drive.google.com/file/d/1rOrg98nraPGHzsqSGSZFLyLFEPCWWHOM/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-2</li>
+            <a href="https://drive.google.com/file/d/1ZVavjU84tZfmLQvPeXViz8ShuX661hZ2/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-3</li>
+            <a href="https://drive.google.com/file/d/1t_bh38fdqw_UFtDbcIhi_2m4yd8ZaOLX/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-4</li>
+            <a href="https://drive.google.com/file/d/1xxIcIqBdO-LEoeAXKOBnoeWhmQ_TxcCH/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-5</li>
+            <a href="https://drive.google.com/file/d/1m3cVpn8YxSL0OfS_nUZcULse4DWsh2QU/view?usp=sharing"> <button>Download</button></a>
+            <br>
+        </ul>
+        </div>
+    </div>
+
+    <div class="subject-container">
+        <h4 class="subject-name">Introdunction to Computer Science and Engineering (ICSE)</h4>
+        <div class="subject-content">
+          <ul class="list-group" style="list-style-type: disc;">
+            <li class="list-group-item">UNIT-1</li>
+            <a href="https://drive.google.com/file/d/10CyfhaDGqofWW7l1JF6jEwft9hzDzsY1/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-2</li>
+            <a href="https://drive.google.com/file/d/1OT-GQ6hGM0bmyHJB4tZw5jCEyhhiM713/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-3</li>
+            <a href="https://drive.google.com/file/d/1EU2MgDDWSXmE2gfPn7HuvK6-JSbOAgDi/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-4</li>
+            <a href="https://drive.google.com/file/d/1YGvPfUdSkdkktwmBmW3xEz1IpLNf9bAS/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-5</li>
+            <a href="https://drive.google.com/file/d/1Wii7bPUGpixv4hdEuzx6tn5bRNUwHuLu/view?usp=sharing"> <button>Download</button></a>
+            <br>
+        </ul>
+        </div>
+    </div>
+
+    <div class="subject-container">
+        <h4 class="subject-name">C Programming</h4>
+        <div class="subject-content">
+          <ul class="list-group" style="list-style-type: disc;">
+            <li class="list-group-item">UNIT-1</li>
+            <a href="https://drive.google.com/file/d/1QypbjssyYI6sFIkZBipSmaOwObX3Idq4/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-2</li>
+            <a href="https://drive.google.com/file/d/1hMHUZ1xDrqUSwPE1bjzB5gA20DjmQRxF/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-3</li>
+            <a href="https://drive.google.com/file/d/1nhAsOeNuuFiVhRhHhbMAhP20kfeHMW1t/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-4</li>
+            <a href="https://drive.google.com/file/d/1NbTAC-brhsDW2EGHDkZdrjcBBn22N-79/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-5</li>
+            <a href="https://drive.google.com/file/d/1kOBRXG5IlUnRzzTrOmDdUhXS6Wg_9qx7/view?usp=sharing"> <button>Download</button></a>
+            <br>
+        </ul>
+        </div>
+    </div>
+    <div class="subject-container">
+        <h4 class="subject-name">Data Structure and Algorithm(DSA)</h4>
+        <div class="subject-content">
+          <ul class="list-group" style="list-style-type: disc;">
+            <li class="list-group-item">UNIT-1</li>
+            <a href="https://drive.google.com/file/d/1xXZ_Q9l0T8WXVMaQx62DYkiyaOvlxys9/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-2</li>
+            <a href="https://drive.google.com/file/d/1818myTS7-0Hf5OvYOy6y9PW1a2h4k2Es/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-3</li>
+            <a href="https://drive.google.com/file/d/10fmnYhOZ10VrWspFQyEtdkXx-imkF4Mg/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-4</li>
+            <a href="https://drive.google.com/file/d/1EidOg2EZbi_U7vJ9TcKlvMB4eGPLIjNx/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-5</li>
+            <a href="https://drive.google.com/file/d/1buSTSc0Ttxiu1uz_klmc3Js0slRmwRyv/view?usp=sharing"> <button>Download</button></a>
+            <br>
+        </ul>
+        </div>
+    </div>
+    
+    <div class="subject-container">
+        <h4 class="subject-name">Operating System(OS)</h4>
+        <div class="subject-content">
+          <ul class="list-group" style="list-style-type: disc;">
+            <li class="list-group-item">UNIT-1</li>
+            <a href="https://drive.google.com/file/d/13w-NdOK7bwrNXhpcj7DcUhz8r8fcMVcx/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-2</li>
+            <a href="https://drive.google.com/file/d/1Ebkv3raBa3klbn3lcIFZ1AHmTG8ZWUeC/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-3</li>
+            <a href="https://drive.google.com/file/d/1-3xkzmYUyNbnOF-DFHRyblMndd2TH3w5/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-4</li>
+            <a href="https://drive.google.com/file/d/15mWhUsR5tQLsCmSDpCAZF8_7hp-HbQe5/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-5</li>
+            <a href="https://drive.google.com/file/d/13SgmiofnmKAp4TprUZelqyD73LW6VRpz/view?usp=sharing"> <button>Download</button></a>
+            <br>
+        </ul>
+        </div>
+    </div>
+    <div class="subject-container">
+        <h4 class="subject-name">Data Communication</h4>
+        <div class="subject-content">
+          <ul class="list-group" style="list-style-type: disc;">
+            <li class="list-group-item">UNIT-1</li>
+            <a href="https://drive.google.com/file/d/1c3m5k52G05AXmxwTMQrdU4xkQLw-p40T/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-2</li>
+            <a href="https://drive.google.com/file/d/1G6BtzSlxfUqxYW9XDbY4SuRNJva1eDbG/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-3</li>
+            <a href="https://drive.google.com/file/d/1qGansS78JcI6wA3MGtZ3NX_NswE5yw38/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-4</li>
+            <a href="https://drive.google.com/file/d/1TzezVMg_d3fn0lleST_lFD-4eMSYMPXG/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-5</li>
+            <a href="https://drive.google.com/file/d/1ge_jQgmoDH0WrNkM5ANVSawEyVbwagLH/view?usp=sharing"> <button>Download</button></a>
+            <br>
+        </ul>
+        </div>
+    </div>
+    <div class="subject-container">
+        <h4 class="subject-name">Analaysis and Design of Algorithm(ADA)</h4>
+        <div class="subject-content">
+          <ul class="list-group" style="list-style-type: disc;">
+            <li class="list-group-item">UNIT-1</li>
+            <a href="https://drive.google.com/file/d/1jWKdZTohJvGAsGaiG7ow7Jal5-qUzY34/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-2</li>
+            <a href="https://drive.google.com/file/d/1erf0mMEHuTVaz6bFy7P7WtL0B-X_IW2C/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-3</li>
+            <a href="https://drive.google.com/file/d/1uuQaNRj0HAj2DkiJ8QmivHE2_13OKwSu/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-4</li>
+            <a href="https://drive.google.com/file/d/1LkvIiwW354W8BAGUHb61bFQGRO4l2nuU/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-5</li>
+            <a href="https://drive.google.com/file/d/1ePckCgvGOa9e6TdY5icGfZWV-02FQ7zp/view?usp=sharing"> <button>Download</button></a>
+            <br>
+        </ul>
+        </div>
+    </div>
+    <div class="subject-container">
+        <h4 class="subject-name">Cloud Computing</h4>
+        <div class="subject-content">
+            <ul class="list-group" style="list-style-type: disc;">
+                <li class="list-group-item">UNIT-1</li>
+                <a href="https://drive.google.com/file/d/189OyUOdMKmCWyL1IkGfc1WcyRyZ38Npn/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">UNIT-2</li>
+                <a href="https://drive.google.com/file/d/1M_J9CXogduMFxU81BdXd2WHP7coGLgYx/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">UNIT-3</li>
+                <a href="https://drive.google.com/file/d/1r4_Xd81GxDHkmyn-GC1J3s87pL3DYr8J/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">UNIT-4</li>
+                <a href="https://drive.google.com/file/d/1TuQCVC09HAKxvAVhVGwFNMGYwSsm8ubq/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">UNIT-5</li>
+                <a href="https://drive.google.com/file/d/1Q4Al4_x6y-kGXZIISO0nfanjBxsnujQ2/view?usp=sharing"> <button>Download</button></a>
+                <br>
+            </ul>
+        </div>
+    </div>
+    <div class="subject-container">
+        <h4 class="subject-name">Object Oriented Analaysis and Design</h4>
+        <div class="subject-content">
+            <ul class="list-group" style="list-style-type: disc;">
+                <li class="list-group-item">UNIT-1</li>
+                <a href="https://drive.google.com/file/d/1KxhKCBLfT_Wy28jwVKLT1hGsWL6TCq_B/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">UNIT-2</li>
+                <a href="https://drive.google.com/file/d/1bNtEcQbBqw8q4znELsZioRJ1yfIBOMuD/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">UNIT-3</li>
+                <a href="https://drive.google.com/file/d/16N4Bj3_-AJ3WZJIcDOLNuKwBjbSZULCs/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">UNIT-4</li>
+                <a href="https://drive.google.com/file/d/1hJMB7qwOspzPCHbavcjApOdxcVKjm0g7/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">UNIT-5</li>
+                <a href="https://drive.google.com/file/d/1DgYpaLMmE1rkDLTh4IiINmIfeuxrKQxl/view?usp=sharing"> <button>Download</button></a>
+                <br>
+            </ul>
+        </div>
+    </div>
+    <div class="subject-container">
+        <h4 class="subject-name">Computer Network(CN)</h4>
+        <div class="subject-content">
+          <ul class="list-group" style="list-style-type: disc;">
+            <li class="list-group-item">UNIT-1</li>
+            <a href="https://drive.google.com/file/d/1n9j9caIsNmgB9zFsFd3kCbi5UFEmUUJ3/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-2</li>
+            <a href="https://drive.google.com/file/d/1LNLTBqQ9OD_YZ7-yHzMIbKV8MdUfhjBr/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-3</li>
+            <a href="https://drive.google.com/file/d/1o-9PzMThG99JbDpNIKO9fMNgF3HLUSi9/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-4</li>
+            <a href="https://drive.google.com/file/d/1WsptiB3ukp109uFtj_UCBVGRC67lo2cd/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-5</li>
+            <a href="https://drive.google.com/file/d/15xD67lePFqNoz1XU4Nb-uD5x8YZRfOWL/view?usp=sharing"> <button>Download</button></a>
+            <br>
+        </ul>
+        </div>
+    </div>
+    <div class="subject-container">
+        <h4 class="subject-name">Data Base Managment System(DBMS)</h4>
+        <div class="subject-content">
+          <ul class="list-group" style="list-style-type: disc;">
+            <li class="list-group-item">UNIT-1</li>
+            <a href="https://drive.google.com/file/d/1tx559VPBCJxEh64Kqb5QSzhI2eQnVIYx/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-2</li>
+            <a href="https://drive.google.com/file/d/1fzzaBnof7PnGtKzdwcc7mWAdKsrA5ZGn/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-3</li>
+            <a href="https://drive.google.com/file/d/1YjpzYZ71kS6jW4CEc2B4uT1hXw6D3PkW/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-4</li>
+            <a href="https://drive.google.com/file/d/1UDi2U54TQwniSDtsAONY0WNng0DCihq4/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-5</li>
+            <a href="https://drive.google.com/file/d/1gGl8MjjdgfJwhJSXycEOKASu7Y41Ea0C/view?usp=sharing"> <button>Download</button></a>
+            <br>
+        </ul>
+        </div>
+    </div>
+    <div class="subject-container">
+        <h4 class="subject-name">Data Science</h4>
+        <div class="subject-content">
+          <ul class="list-group" style="list-style-type: disc;">
+            <li class="list-group-item">UNIT-1</li>
+            <a href="https://drive.google.com/file/d/1Qu_CM1yzvD5EvVBa9kwfRdOyomNVfWnP/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-2</li>
+            <a href="https://drive.google.com/file/d/1dHJMnwMh0GucJkZWvAq9oHwENtcgBi-A/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-3</li>
+            <a href="https://drive.google.com/file/d/1dHJMnwMh0GucJkZWvAq9oHwENtcgBi-A/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-4</li>
+            <a href="https://drive.google.com/file/d/1dHJMnwMh0GucJkZWvAq9oHwENtcgBi-A/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-5</li>
+            <a href="https://drive.google.com/file/d/1BRzg90KT1RYH2EzQsUle9Dn5flekJpts/view?usp=sharing"> <button>Download</button></a>
+            <br>
+        </ul>
+        </div>
+    </div>
+    <div class="subject-container">
+        <h4 class="subject-name">Introduction to core Java</h4>
+        <div class="subject-content">
+          <ul class="list-group" style="list-style-type: disc;">
+            <li class="list-group-item">UNIT-1</li>
+            <a href="https://drive.google.com/file/d/1Qu_CM1yzvD5EvVBa9kwfRdOyomNVfWnP/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-2</li>
+            <a href="https://drive.google.com/file/d/1dHJMnwMh0GucJkZWvAq9oHwENtcgBi-A/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-3</li>
+            <a href="https://drive.google.com/file/d/1dHJMnwMh0GucJkZWvAq9oHwENtcgBi-A/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-4</li>
+            <a href="https://drive.google.com/file/d/1dHJMnwMh0GucJkZWvAq9oHwENtcgBi-A/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-5</li>
+            <a href="https://drive.google.com/file/d/1BRzg90KT1RYH2EzQsUle9Dn5flekJpts/view?usp=sharing"> <button>Download</button></a>
+            <br>
+        </ul>
+        </div>
+    </div>
+    <div class="subject-container">
+        <h4 class="subject-name">Introduction to Advanced Java</h4>
+        <div class="subject-content">
+          <ul class="list-group" style="list-style-type: disc;">
+            <li class="list-group-item">UNIT-1</li>
+            <a href="https://drive.google.com/file/d/1Qu_CM1yzvD5EvVBa9kwfRdOyomNVfWnP/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-2</li>
+            <a href="https://drive.google.com/file/d/1dHJMnwMh0GucJkZWvAq9oHwENtcgBi-A/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-3</li>
+            <a href="https://drive.google.com/file/d/1dHJMnwMh0GucJkZWvAq9oHwENtcgBi-A/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-4</li>
+            <a href="https://drive.google.com/file/d/1dHJMnwMh0GucJkZWvAq9oHwENtcgBi-A/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-5</li>
+            <a href="https://drive.google.com/file/d/1BRzg90KT1RYH2EzQsUle9Dn5flekJpts/view?usp=sharing"> <button>Download</button></a>
+            <br>
+        </ul>
+        </div>
+    </div>
+    <div class="subject-container">
+        <h4 class="subject-name">Principal of Programming Languages</h4>
+        <div class="subject-content">
+          <ul class="list-group" style="list-style-type: disc;">
+            <li class="list-group-item">UNIT-1</li>
+            <a href="https://drive.google.com/file/d/16BK7Ggymh4VVyzxYsfEHgThagAHE5DgL/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-2</li>
+            <a href="https://drive.google.com/file/d/1pMjjZ0Xn2RS13DGMigRB4ddyd_plpdqc/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-3</li>
+            <a href="https://drive.google.com/file/d/19lhA4Ad8cbUzSi-e5d8lcrim_J58zO_b/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-4</li>
+            <a href="https://drive.google.com/file/d/1htWOB5g5aNdj8Q3VMT7Y6vxGmGSjaZE0/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-5</li>
+            <a href="https://drive.google.com/file/d/1NmUvyepBsyGgsq-DhCKypQEtwgGLx7dM/view?usp=sharing"> <button>Download</button></a>
+            <br>
+        </ul>
+        </div>
+    </div> 
+    <div class="subject-container">
+        <h4 class="subject-name">Software Engineering and Project Managment(SEPM)</h4>
+        <div class="subject-content">
+          <ul class="list-group" style="list-style-type: disc;">
+            <li class="list-group-item">UNIT-1</li>
+            <a href="https://drive.google.com/file/d/1EuW5QqN-GvhzyjGHRlEjK4p7Pv3CtYh1/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-2</li>
+            <a href="https://drive.google.com/file/d/1Oe5EchVgthvi92q-JFh--V_ap2PPNsz4/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-3</li>
+            <a href="https://drive.google.com/file/d/1sBWo0LPPytwmsqvAFW-9-BUjRwg8WNe8/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-4</li>
+            <a href="https://drive.google.com/file/d/1F5kLheF68obB-0tjBMNir3fWGWeRmrky/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-5</li>
+            <a href="https://drive.google.com/file/d/1JL6koWUrgipqOe9VA-VwR4kfffhqpB0T/view?usp=sharing"> <button>Download</button></a>
+            <br>
+        </ul>
+        </div>
+    </div> 
+    <div class="subject-container">
+        <h4 class="subject-name">Wireless Networks</h4>
+        <div class="subject-content">
+          <ul class="list-group" style="list-style-type: disc;">
+            <li class="list-group-item">UNIT-1</li>
+            <a href="https://drive.google.com/file/d/1niXJY849BxwTc8cuF8GQ5hOLkRUgSDGb/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-2</li>
+            <a href="https://drive.google.com/file/d/13WiAclaYfTfqaOzyv5T95exFmUhpL9gu/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-3</li>
+            <a href="https://drive.google.com/file/d/1EjVqfgnXlmd_k6-EWhsxcSgOdmvU7Oxj/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-4</li>
+            <a href="https://drive.google.com/file/d/1mNttkL-XfI-OMPk-Nl9Nd7nGkDiBJgI7/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-5</li>
+            <a href="https://drive.google.com/file/d/1U0swxibSxjx1ZiwNaXHCvMzETLyzxCOG/view?usp=sharing"> <button>Download</button></a>
+            <br>
+        </ul>
+        </div>
+    </div> 
+    <div class="subject-container">
+        <h4 class="subject-name">Computer Graphics and Multimedia(CGM)</h4>
+        <div class="subject-content">
+          <ul class="list-group" style="list-style-type: disc;">
+            <li class="list-group-item">UNIT-1</li>
+            <a href="https://drive.google.com/file/d/15HORd8mM2CQjgi9FvtjBzbKsVy5JEiFt/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-2</li>
+            <a href="https://drive.google.com/file/d/1fUSZvZKewh7je1G9i3GtEF3V505i__BI/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-3</li>
+            <a href="https://drive.google.com/file/d/1Hv03mMrdHoGn00aTx4NCPwM0BftiO2YH/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-4</li>
+            <a href="https://drive.google.com/file/d/1sf-Dtj3-LX25HJro_tQuRWQvnEppS_fA/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-5</li>
+            <a href="https://drive.google.com/file/d/16HevlTXxAmRvjTEH4tJ1hdJckZm-JJGd/view?usp=sharing"> <button>Download</button></a>
+            <br>
+        </ul>
+        </div>
+    </div> 
+    <div class="subject-container">
+        <h4 class="subject-name">Enviroment Studies(EMS)</h4>
+        <div class="subject-content">
+          <ul class="list-group" style="list-style-type: disc;">
+            <li class="list-group-item">UNIT-1</li>
+            <a href="https://drive.google.com/file/d/1JHnctIfVdEy2jN2Mib03V875djiwYF64/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-2</li>
+            <a href="https://drive.google.com/file/d/1KBrmoM2t3p2S2JEsnpnmshVQdhWsTNFc/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-3</li>
+            <a href="https://drive.google.com/file/d/1o40z1xqhOTKhbJcDrmgeOrLx-nAIJniT/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-4</li>
+            <a href="https://drive.google.com/file/d/1UERhFelxGV6sZhXKdqpqiiUJwP__s417/view?usp=sharing"> <button>Download</button></a>
+            <br><br>
+            <li class="list-group-item">UNIT-5</li>
+            <a href="https://drive.google.com/file/d/145gF_9uG8dzg7sOsNfuBgekCBXPZAcZ6/view?usp=sharing"> <button>Download</button></a>
+            <br>
+        </ul>
+        </div>
+    </div> 
+    
+
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var searchInput = document.getElementById("searchInput");
+
+    searchInput.addEventListener("input", function() {
+        var searchTerm = searchInput.value.toLowerCase();
+        var subjects = document.querySelectorAll(".subject-container");
+
+        subjects.forEach(function(subject) {
+            var subjectName = subject.querySelector(".subject-name").textContent.toLowerCase();
+            var isVisible = subjectName.includes(searchTerm);
+
+            // Toggle visibility based on search result
+            subject.style.display = isVisible ? "block" : "none";
+
+            // Reset visibility of subject content when subject is hidden
+            if (!isVisible) {
+                var subjectContent = subject.querySelector(".subject-content");
+                subjectContent.style.display = "none"; // Ensure content is hidden when subject is hidden
+            }
+        });
+    });
+
+    // Event listener to toggle subject content visibility
+    document.querySelectorAll('.subject-name').forEach(function(subjectName) {
+        subjectName.addEventListener('click', function() {
+            var subjectContent = this.nextElementSibling;
+            subjectContent.style.display = subjectContent.style.display === "block" ? "none" : "block";
+        });
+    });
+});
+</script>
+
+</body>
+</html>

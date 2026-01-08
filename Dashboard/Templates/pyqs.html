@@ -1,0 +1,567 @@
+{% load static %} 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subject Search</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.left-text {
+    margin: 20px;
+    background-color: #ffffff; /* Add background color to the left section */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.subject-container {
+    margin-bottom: 20px;
+    background-color: #ffffff; /* Add background color to each subject container */
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.subject-name {
+    color: #007bff;
+    cursor: pointer;
+    margin: 0;
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.subject-content {
+    display: none;
+    padding: 20px;
+}
+
+.list-group {
+    padding-left: 20px;
+}
+
+.list-group-item {
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+}
+
+.subject-thumbnail {
+    width: 100%;
+    height: auto;
+    border-radius: 8px 8px 0 0;
+    object-fit: cover;
+}
+
+.subject-thumbnail img {
+    width: 100%;
+    height: 100%;
+}
+
+.subject-content ul {
+    margin: 0;
+    padding: 0;
+}
+
+.subject-content li {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+.subject-thumbnail {
+    position: relative;
+    width: 100%;
+    max-width: 1500px; /* Set maximum width for the image */
+    height: 150px;
+    border-radius: 8px 8px 0 0;
+    object-fit: cover;
+    margin-bottom: 20px;
+    text-align: center; /* Center align the text */
+}
+
+.subject-thumbnail .thumbnail-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; /* Text color */
+    font-size: 50px; /* Adjust font size as needed */
+    font-weight: bold; /* Adjust font weight as needed */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional text shadow */
+}
+
+
+@media (max-width: 768px) {
+    .subject-thumbnail {
+        height: 100px; /* Adjust height for smaller screens */
+    }
+    .subject-thumbnail .thumbnail-text {
+        font-size: 30px; /* Adjust font size for smaller screens */
+    }
+}
+
+/* Media queries for even smaller screens (e.g., smartphones in portrait mode) */
+@media (max-width: 480px) {
+    .subject-thumbnail .thumbnail-text {
+        font-size: 20px; /* Further adjust font size for very small screens */
+    }
+}
+
+</style>
+
+<div class="left-text">
+    <!-- <img class="subject-thumbnail" src="page-header.jpg" alt="Notes of Engineering Subject">
+    <br> -->
+
+    <div class="subject-thumbnail">
+        <img src="{% static 'images/page-header.jpg' %}"alt="Engineering Subject Notes">
+        <div class="thumbnail-text">Engineering Subject PYQS</div>
+    </div>
+    <input type="text" id="searchInput" placeholder="Search for a subject...">
+
+    <div class="subject-container">
+        <h4 class="subject-name">Mathematics-1</h4>
+        <div class="subject-content">
+            <ul class="list-group" style="list-style-type: disc;">
+                <li class="list-group-item">MST-1</li>
+                <a href="https://drive.google.com/file/d/10T7W5wt5bH_EvH-3ar-z8G2qi0zg5avq/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">MST-2</li>
+                <a href="https://drive.google.com/file/d/10PezmMbgSMwfS1-g0_9_pt92MqtIMrID/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">END SEM</li>
+                <a href="https://drive.google.com/file/d/10T2DjAj96MrXYKs48EVp54cTAscQ0bIn/view?usp=sharing"> <button>Download</button></a>
+                <br>
+            </ul>
+        </div>
+    </div>
+
+    <div class="subject-container">
+        <h4 class="subject-name">Mathematics-2</h4>
+        <div class="subject-content">
+            <ul class="list-group" style="list-style-type: disc;">
+                <li class="list-group-item">MST-1</li>
+                <a href="https://drive.google.com/file/d/10utpn_JpEJgkebPplguRwSSiViXKX72K/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">MST-2</li>
+                <a href="https://drive.google.com/file/d/10VlTaajzO-7KZz27tt70Q5d47herNkzt/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">END SEM</li>
+                <a href="https://drive.google.com/file/d/10bXI3zTGkHT2jQqDlYoj79YEy-invC6e/view?usp=sharing"> <button>Download</button></a>
+                <br>
+            </ul>
+        </div>
+    </div>
+
+    <div class="subject-container">
+        <h4 class="subject-name">Applied Physics</h4>
+        <div class="subject-content">
+            <ul class="list-group" style="list-style-type: disc;">
+                <li class="list-group-item">MST-1</li>
+                <a href="https://drive.google.com/file/d/12ckLU4uwaC2D0oBdBsXuFktoom6uacVq/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">MST-2</li>
+                <a href="https://drive.google.com/file/d/12QwaMZzwhYhOs3Uecihw9gu5MxW4ZZ7w/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">END SEM</li>
+                <a href="https://drive.google.com/file/d/12Y6N26AXbGD5O7EhKKQeosGy2Kta_8_2/view?usp=sharing"> <button>Download</button></a>
+                <br>
+            </ul>
+        </div>
+    </div>
+
+    <div class="subject-container">
+        <h4 class="subject-name">Computer Science and Organisation(CSO)</h4>
+        <div class="subject-content">
+            <ul class="list-group" style="list-style-type: disc;">
+                <li class="list-group-item">MST-1</li>
+                <a href="https://drive.google.com/file/d/114cmSnxNXDefw9HjY2_L7fgKgtOsz0xe/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">MST-2</li>
+                <a href="https://drive.google.com/file/d/111KONfqjOoUCsT0On7Yt4PjPdxJwVkvq/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">END SEM</li>
+                <a href="https://drive.google.com/file/d/118ZQfiEKC1s-JSQVz7hAAbu1A0eMhVmX/view?usp=sharing"> <button>Download</button></a>
+                <br>
+            </ul>
+        </div>
+    </div>
+
+    <div class="subject-container">
+        <h4 class="subject-name">Digital Logic and Circuit Design(DLCD)</h4>
+        <div class="subject-content">
+            <ul class="list-group" style="list-style-type: disc;">
+                <li class="list-group-item">MST-1</li>
+                <a href="https://drive.google.com/file/d/13YsrjBioO3MAf7Jl3Rk8QDP5CmtUEp9w/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">MST-2</li>
+                <a href="https://drive.google.com/file/d/13dYlPQXq9jvwemZauYkR4XIMGfFdxLJy/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">END SEM</li>
+                <a href="https://drive.google.com/file/d/13MF5DVPrgzxzL_4y7HoeTmxo71IdG62S/view?usp=sharing"> <button>Download</button></a>
+                <br>
+            </ul>
+        </div>
+    </div>
+
+    <div class="subject-container">
+        <h4 class="subject-name">Discreate Structure</h4>
+        <div class="subject-content">
+            <ul class="list-group" style="list-style-type: disc;">
+                <li class="list-group-item">MST-1</li>
+                <a href="https://drive.google.com/file/d/11eDKLSpIUE7LicXtqJU_sFMQrZiv20lJ/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">MST-2</li>
+                <a href="https://drive.google.com/file/d/11XQd1H9cn9Gl7Q9gyigVz2ETC9iAfeOT/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">END SEM</li>
+                <a href="https://drive.google.com/file/d/11dCaZvXQ8MZsrLt2aHHbMiOcT24h1q4c/view?usp=sharing"> <button>Download</button></a>
+                <br>
+            </ul>
+        </div>
+    </div>
+
+    <div class="subject-container">
+        <h4 class="subject-name">Communication Skills</h4>
+        <div class="subject-content">
+            <ul class="list-group" style="list-style-type: disc;">
+                <li class="list-group-item">MST-1</li>
+                <a href="https://drive.google.com/file/d/10yvsOtiHDmJYPjzL0wjowawAa97qMT2E/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">MST-2</li>
+                <a href="https://drive.google.com/file/d/10xRt0qrIdjHVLIKLHBX1STTwEQVNBB7x/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">END SEM</li>
+                <a href="https://drive.google.com/file/d/10xSxP5Sk0LWta0xE8NXuAbpmVxzQjvBm/view?usp=sharing"> <button>Download</button></a>
+                <br>
+            </ul>
+        </div>
+    </div>
+
+    <div class="subject-container">
+        <h4 class="subject-name">Object Oriented Programing(OOP)</h4>
+        <div class="subject-content">
+            <ul class="list-group" style="list-style-type: disc;">
+                <li class="list-group-item">MST-1</li>
+                <a href="https://drive.google.com/file/d/11fNlSok8pB9MUHfkRDXrmN_IPknp4BzW/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">MST-2</li>
+                <a href="https://drive.google.com/file/d/11iiZQcKjnZ6FpBOahPD2VsL5Ul06xATJ/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">END SEM</li>
+                <a href="https://drive.google.com/file/d/11iOKh3Pt1gY3swPxdEHg12LbDDG_z-kd/view?usp=sharing"> <button>Download</button></a>
+                <br>
+            </ul>
+        </div>
+    </div>
+
+    <div class="subject-container">
+        <h4 class="subject-name">Introdunction to Computer Science and Engineering (ICSE)</h4>
+        <div class="subject-content">
+            <ul class="list-group" style="list-style-type: disc;">
+                <li class="list-group-item">MST-1</li>
+                <a href="https://drive.google.com/file/d/13m0DJqPvR2RfM2n720LXLLOM0pzZA5Z8/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">MST-2</li>
+                <a href="https://drive.google.com/file/d/13nvx1ZBbcsOZpj1xUa1EkFxT1WDPlvwH/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">END SEM</li>
+                <a href="https://drive.google.com/file/d/13sb1_ZZRxUkip6fxbZ8Zdpm5dCMHwbLZ/view?usp=sharing"> <button>Download</button></a>
+                <br>
+            </ul>
+        </div>
+    </div>
+
+    <div class="subject-container">
+        <h4 class="subject-name">C Programming</h4>
+        <div class="subject-content">
+            <ul class="list-group" style="list-style-type: disc;">
+                <li class="list-group-item">MST-1</li>
+                <a href="https://drive.google.com/file/d/12-UeN0ZClcKICbw1KdGV3ybQCA63UEgq/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">MST-2</li>
+                <a href="https://drive.google.com/file/d/12-gv87sDtFai_fYTSqz8eJZT2QtZWoZG/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">END SEM</li>
+                <a href="https://drive.google.com/file/d/11yUYD8oYMMjIqWXmM2zt-LyYvmJxMVYM/view?usp=sharing"> <button>Download</button></a>
+                <br>
+            </ul>
+        </div>
+    </div>
+    <div class="subject-container">
+        <h4 class="subject-name">Data Structure and Algorithm(DSA)</h4>
+        <div class="subject-content">
+            <ul class="list-group" style="list-style-type: disc;">
+                <li class="list-group-item">MST-1</li>
+                <a href="https://drive.google.com/file/d/11Q4MFTnqz7iFWm3J4KHVuuU5KeMTuOr6/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">MST-2</li>
+                <a href="https://drive.google.com/file/d/118cWbFkL1M1jGbiU0GprW_1R-HkM9_6N/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">END SEM</li>
+                <a href="https://drive.google.com/file/d/11918tzbHGsDgHqLWJH2y9_z_q-J32QkY/view?usp=sharing"> <button>Download</button></a>
+                <br>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="subject-container">
+        <h4 class="subject-name">Operating System(OS)</h4>
+        <div class="subject-content">
+            <ul class="list-group" style="list-style-type: disc;">
+                <li class="list-group-item">MST-1</li>
+                <a href="https://drive.google.com/file/d/11vAnQqoMuuA0qh2MWSADIgotB4UdSgWe/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">MST-2</li>
+                <a href="https://drive.google.com/file/d/11vWkB3h70tPGQC81uh7AW97jMXa7bIe-/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">END SEM</li>
+                <a href="https://drive.google.com/file/d/11mBVoxGyY4inHVZ_bxRD_9q6P-DOEDdx/view?usp=sharing"> <button>Download</button></a>
+                <br>
+            </ul>
+        </div>
+    </div>
+    <div class="subject-container">
+        <h4 class="subject-name">Data Communication</h4>
+        <div class="subject-content">
+            <ul class="list-group" style="list-style-type: disc;">
+                <li class="list-group-item">MST-1</li>
+                <a href="https://drive.google.com/file/d/13JVEViFvZ1YUITJ1N3-m8i1MUQLuO5Ll/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">MST-2</li>
+                <a href="https://drive.google.com/file/d/13IP4xiaZ7h7d_UGCh_fp8xfd79AkMSp4/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">END SEM</li>
+                <a href="https://drive.google.com/file/d/13E6RSG8MuUDblO6L2I0yvcdQcKFJL-yl/view?usp=sharing"> <button>Download</button></a>
+                <br>
+            </ul>
+        </div>
+    </div>
+    <div class="subject-container">
+        <h4 class="subject-name">Analaysis and Design of Algorithm(ADA)</h4>
+        <div class="subject-content">
+            <ul class="list-group" style="list-style-type: disc;">
+                <li class="list-group-item">MST-1</li>
+                <a href="https://drive.google.com/file/d/14E3gC0ohsvv_oAsEGXXVdp44n9HO9_ZX/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">MST-2</li>
+                <a href="https://drive.google.com/file/d/13w_O_s8hhGdj3ZuQuPO-JyiNzBbqMIZ5/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">END SEM</li>
+                <a href="https://drive.google.com/file/d/14Mbxo_avjVWQ5ihW0sjImCy43NL_Qb4_/view?usp=sharing"> <button>Download</button></a>
+                <br>
+            </ul>
+        </div>
+    </div>
+    <div class="subject-container">
+        <h4 class="subject-name">Computer Network(CN)</h4>
+        <div class="subject-content">
+            <ul class="list-group" style="list-style-type: disc;">
+                <li class="list-group-item">MST-1</li>
+                <a href="https://drive.google.com/file/d/12yMjB02Esi0lmtBrz5z35W3f2MxdR39S/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">MST-2</li>
+                <a href=""> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">END SEM</li>
+                <a href="https://drive.google.com/file/d/12vDiIjwISTlk1lhRud6vu9JPR4kfMGNE/view?usp=sharing"> <button>Download</button></a>
+                <br>
+            </ul>
+        </div>
+    </div>
+    <div class="subject-container">
+        <h4 class="subject-name">Data Base Managment System(DBMS)</h4>
+        <div class="subject-content">
+            <ul class="list-group" style="list-style-type: disc;">
+                <li class="list-group-item">MST-1</li>
+                <a href=""> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">MST-2</li>
+                <a href=""> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">END SEM</li>
+                <a href=""> <button>Download</button></a>
+                <br>
+            </ul>
+        </div>
+    </div>
+    <div class="subject-container">
+        <h4 class="subject-name">Data Science</h4>
+        <div class="subject-content">
+            <ul class="list-group" style="list-style-type: disc;">
+                <li class="list-group-item">MST-1</li>
+                <a href=""> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">MST-2</li>
+                <a href=""> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">END SEM</li>
+                <a href=""> <button>Download</button></a>
+                <br>
+            </ul>
+        </div>
+    </div>
+    <div class="subject-container">
+        <h4 class="subject-name">Introduction to core Java</h4>
+        <div class="subject-content">
+            <ul class="list-group" style="list-style-type: disc;">
+                <li class="list-group-item">MST-1</li>
+                <a href=""> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">MST-2</li>
+                <a href=""> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">END SEM</li>
+                <a href=""> <button>Download</button></a>
+                <br>
+            </ul>
+        </div>
+    </div>
+    <div class="subject-container">
+        <h4 class="subject-name">Introduction to Advanced Java</h4>
+        <div class="subject-content">
+            <ul class="list-group" style="list-style-type: disc;">
+                <li class="list-group-item">MST-1</li>
+                <a href=""> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">MST-2</li>
+                <a href=""> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">END SEM</li>
+                <a href=""> <button>Download</button></a>
+                <br>
+            </ul>
+        </div>
+    </div>
+    <div class="subject-container">
+        <h4 class="subject-name">Principal of Programming Languages</h4>
+        <div class="subject-content">
+            <ul class="list-group" style="list-style-type: disc;">
+                <li class="list-group-item">MST-1</li>
+                <a href="https://drive.google.com/file/d/121KrRPOBLtUpald8AWkJ9UzVnFDh2PMU/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">MST-2</li>
+                <a href="https://drive.google.com/file/d/124W6FUuFFJGAUFyvC0zEiyzhOM3GXpmM/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">END SEM</li>
+                <a href="https://drive.google.com/file/d/1213K1zT6WzDJFOPv3wSLnjYJAD9LjzqT/view?usp=sharing"> <button>Download</button></a>
+                <br>
+            </ul>
+        </div>
+    </div> 
+    <div class="subject-container">
+        <h4 class="subject-name">Computer Graphics and Multimedia(CGM)</h4>
+        <div class="subject-content">
+            <ul class="list-group" style="list-style-type: disc;">
+                <li class="list-group-item">MST-1</li>
+                <a href="https://drive.google.com/file/d/12mYPG5eZcuyS12ATgipp6JN0AnfM-zKo/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">MST-2</li>
+                <a href="https://drive.google.com/file/d/12mYPG5eZcuyS12ATgipp6JN0AnfM-zKo/view?usp=sharing"> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">END SEM</li>
+                <a href="https://drive.google.com/file/d/12noNqtwL5jqDi0ZRg2altTmvArj_pAm-/view?usp=sharing"> <button>Download</button></a>
+                <br>
+            </ul>
+        </div>
+    </div> 
+    <div class="subject-container">
+        <h4 class="subject-name">Enviroment Studies</h4>
+        <div class="subject-content">
+            <ul class="list-group" style="list-style-type: disc;">
+                <li class="list-group-item">MST-1</li>
+                <a href=""> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">MST-2</li>
+                <a href=""> <button>Download</button></a>
+                <br><br>
+                <li class="list-group-item">END SEM</li>
+                <a href=""> <button>Download</button></a>
+                <br>
+            </ul>
+        </div>
+    </div> 
+    
+
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var searchInput = document.getElementById("searchInput");
+
+    searchInput.addEventListener("input", function() {
+        var searchTerm = searchInput.value.toLowerCase();
+        var subjects = document.querySelectorAll(".subject-container");
+
+        subjects.forEach(function(subject) {
+            var subjectName = subject.querySelector(".subject-name").textContent.toLowerCase();
+            var isVisible = subjectName.includes(searchTerm);
+
+            // Toggle visibility based on search result
+            subject.style.display = isVisible ? "block" : "none";
+
+            // Reset visibility of subject content when subject is hidden
+            if (!isVisible) {
+                var subjectContent = subject.querySelector(".subject-content");
+                subjectContent.style.display = "none"; // Ensure content is hidden when subject is hidden
+            }
+        });
+    });
+
+    // Event listener to toggle subject content visibility
+    document.querySelectorAll('.subject-name').forEach(function(subjectName) {
+        subjectName.addEventListener('click', function() {
+            var subjectContent = this.nextElementSibling;
+            subjectContent.style.display = subjectContent.style.display === "block" ? "none" : "block";
+        });
+    });
+});
+</script>
+
+</body>
+</html>
